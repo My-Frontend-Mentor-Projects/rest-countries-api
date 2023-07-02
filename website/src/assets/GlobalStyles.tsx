@@ -28,24 +28,37 @@ h1 {
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 20px;
+
+  @media ${device.sm} {
+    font-size: 24px;
+  }
+
+  @media ${device.lg} {
+    font-size: 28px;
+  }
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 h5 {
-  font-size: 1rem;
+  font-size: 14px;
 }
 
 p {
   font-size: 14px;
   font-weight: 600;
+}
+
+button {
+  border: 0
 }
 
 .main-container {

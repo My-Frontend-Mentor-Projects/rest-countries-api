@@ -23,6 +23,7 @@ const CardsGridWrapper = styled.section`
   grid-auto-rows: 338px;
   grid-gap: 35px;
   justify-content: center;
+  padding-bottom: 15vh;
 
   @media ${device.sm} {
     grid-template-columns: repeat(2, 265px);
