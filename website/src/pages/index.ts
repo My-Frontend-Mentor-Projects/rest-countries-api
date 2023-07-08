@@ -1,3 +1,4 @@
+import Country from './Country';
 import Home from './Home';
 
-export { Home };
+export { Home, Country };

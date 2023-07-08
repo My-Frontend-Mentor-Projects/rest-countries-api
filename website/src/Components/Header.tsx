@@ -1,12 +1,16 @@
 import { styled } from 'styled-components';
 import ToggleTheme from './ToggleTheme';
 
-const Header = () => {
+interface Props {
+  themeToggler: () => void;
+}
+
+const Header = ({ themeToggler }: Props) => {
   return (
     <HeaderWrapper>
       <div className='main-container'>
         <h1>Where in the World?</h1>
-        <ToggleTheme />
+        <ToggleTheme themeToggler={themeToggler} />
       </div>
     </HeaderWrapper>
   );

@@ -2,9 +2,13 @@ import { styled } from 'styled-components';
 import { device } from '../assets/breakpoints';
 import { HiOutlineMoon } from 'react-icons/hi';
 
-const ToggleTheme = () => {
+interface Props {
+  themeToggler: () => void;
+}
+
+const ToggleTheme = ({ themeToggler }: Props) => {
   return (
-    <ToggleThemeWrapper onClick={() => console.log('hola')}>
+    <ToggleThemeWrapper onClick={themeToggler}>
       <HiOutlineMoon className='icon' />
       <p>Dark Mode</p>
     </ToggleThemeWrapper>

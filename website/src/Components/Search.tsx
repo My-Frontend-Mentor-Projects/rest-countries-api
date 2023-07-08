@@ -24,7 +24,7 @@ const SearchWrapper = styled.div`
     position: absolute;
     color: ${({ theme }) => theme.inputPlaceholder};
     font-size: 23px;
-    top: 14px;
+    top: 16px;
     left: 30px;
   }
 

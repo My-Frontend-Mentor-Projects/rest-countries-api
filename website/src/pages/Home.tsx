@@ -1,9 +1,8 @@
-import { CardsGrid, Filters, Header } from '../Components';
+import { CardsGrid, Filters } from '../Components';
 
 const Home = () => {
   return (
     <>
-      <Header />
       <Filters />
       <CardsGrid />
     </>

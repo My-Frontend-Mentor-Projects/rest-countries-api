@@ -1,12 +1,7 @@
-import { CountryDetails, Header } from '../Components';
+import { CountryDetails } from '../Components';
 
 const Country = () => {
-  return (
-    <>
-      <Header />
-      <CountryDetails />
-    </>
-  );
+  return <CountryDetails />;
 };
 
 export default Country;

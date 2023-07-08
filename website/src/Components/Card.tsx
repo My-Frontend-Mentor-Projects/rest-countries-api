@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { device } from '../assets/breakpoints';
 
 const Card = () => {
   return (
@@ -42,6 +43,7 @@ const CardWrapper = styled.div`
   .name {
     margin: 25px 0 20px 20px;
     font-size: 18px;
+    font-weight: 800;
   }
 
   .desc {
@@ -49,8 +51,16 @@ const CardWrapper = styled.div`
     margin-left: 20px;
     font-size: 14px;
 
+    @media ${device.lg} {
+      font-size: 15px;
+    }
+
     li:not(:last-child) {
       margin-bottom: 5px;
+
+      @media ${device.lg} {
+        margin-bottom: 8px;
+      }
     }
   }
 
