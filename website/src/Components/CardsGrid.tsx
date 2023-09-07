@@ -1,17 +1,35 @@
 import { styled } from 'styled-components';
 import { device } from '../assets/breakpoints';
 import Card from './Card';
+import { Country } from '../types';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { ErrorMsg, Loader } from '.';
+import { getDefaultCountries } from '../redux/features/CountrySlice';
+import { useEffect } from 'react';
 
 const CardsGrid = () => {
+  const { isLoading, error, countries } = useAppSelector(
+    (store) => store.country
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getDefaultCountries());
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorMsg msg={error} />;
+  }
+
   return (
     <CardsGridWrapper className='main-container'>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {countries.map((country: Country) => (
+        <Card key={country.name} country={country} />
+      ))}
     </CardsGridWrapper>
   );
 };

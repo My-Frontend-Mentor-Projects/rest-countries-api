@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { styled } from 'styled-components';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { Region } from '../types';
+import { useFilterRegion } from '../hooks/useFilterRegion';
 
 interface Props {
   title: string;
@@ -9,11 +9,7 @@ interface Props {
 }
 
 const SelectBox = ({ title, options }: Props) => {
-  const [showOptions, setShowOptions] = useState(false);
-
-  const toggleShowOptions = () => {
-    setShowOptions(!showOptions);
-  };
+  const { showOptions, toggleShowOptions, selectRegion } = useFilterRegion();
 
   return (
     <SelectBoxWrapper>
@@ -25,7 +21,7 @@ const SelectBox = ({ title, options }: Props) => {
           <ul>
             {options.map((option) => {
               return (
-                <li key={option} onClick={() => console.log(option)}>
+                <li key={option} onClick={() => selectRegion(option)}>
                   {option}
                 </li>
               );

@@ -1,10 +1,9 @@
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './assets/GlobalStyles';
 import { Home, Country } from './pages';
 import { Header } from './Components';
-import 'normalize-css';
-import { Routes, Route } from 'react-router-dom';
 import { useDarkMode } from './hooks/useDarkMode';
+import { GlobalStyles } from './assets/GlobalStyles';
 
 function App() {
   const { currentTheme, themeToggler } = useDarkMode();

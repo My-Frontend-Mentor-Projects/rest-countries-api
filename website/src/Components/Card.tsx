@@ -1,23 +1,26 @@
 import { styled } from 'styled-components';
 import { device } from '../assets/breakpoints';
+import { Country } from '../types';
 
-const Card = () => {
+interface Props {
+  country: Country;
+}
+
+const Card = ({ country }: Props) => {
+  const { flag, name, population, region, capital } = country;
   return (
     <CardWrapper>
-      <img
-        src='https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png'
-        alt=''
-      />
-      <h3 className='name'>Germany</h3>
+      <img src={flag.img} alt={flag.alt} />
+      <h3 className='name'>{name}</h3>
       <ul className='desc'>
         <li>
-          <span className='text-bold'>Population:</span> 81,770,900
+          <span className='text-bold'>Population:</span> {population}
         </li>
         <li>
-          <span className='text-bold'>Region:</span> Europe
+          <span className='text-bold'>Region:</span> {region}
         </li>
         <li>
-          <span className='text-bold'>Capital:</span> Berlin
+          <span className='text-bold'>Capital:</span> {capital}
         </li>
       </ul>
     </CardWrapper>

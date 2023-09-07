@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
-import { palette } from '../assets/colors';
 
 const Loader = () => {
-  return <LoaderWrapper></LoaderWrapper>;
+  return <LoaderWrapper />;
 };
 
 const LoaderWrapper = styled.div`
@@ -12,6 +11,10 @@ const LoaderWrapper = styled.div`
   width: 48px;
   height: 48px;
   animation: spin 1s linear infinite;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 40%;
 
   @keyframes spin {
     0% {
