@@ -1,8 +1,34 @@
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
-import { BackButton } from '.';
+import { BackButton, Loader, ErrorMsg } from '.';
 import { device } from '../assets/breakpoints';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { getCountryDetails } from '../redux/features/CountrySlice';
+import { Link } from 'react-router-dom';
+import { BorderCountry } from '../types';
 
-const CountryDetails = () => {
+interface Props {
+  countryCode: string | undefined;
+}
+
+const CountryDetails = ({ countryCode }: Props) => {
+  const { isLoading, error, countryDetails } = useAppSelector(
+    (store) => store.country
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getCountryDetails({ countryCode }));
+  }, [countryCode]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <ErrorMsg msg={error} />;
+  }
+
   return (
     <CountryDetailsWrapper className='main-container'>
       <div className='btn-container'>
@@ -10,52 +36,64 @@ const CountryDetails = () => {
       </div>
       <img
         className='flag'
-        src='https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png'
-        alt=''
+        src={countryDetails.flag.img}
+        alt={countryDetails.flag.alt}
       />
       <div className='details'>
-        <h2 className='title'>Belgium</h2>
+        <h2 className='title'>{countryDetails.name}</h2>
         <ul className='details-1'>
           <li>
-            <span className='field-name'>Native Name:</span> Belgie
+            <span className='field-name'>Native Name:</span>{' '}
+            {countryDetails.nativeName}
           </li>
           <li>
-            <span className='field-name'>Population:</span> 11,319,511
+            <span className='field-name'>Population:</span>{' '}
+            {countryDetails.population}
           </li>
           <li>
-            <span className='field-name'>Region:</span> Europe
+            <span className='field-name'>Region:</span> {countryDetails.region}
           </li>
           <li>
-            <span className='field-name'>Sub Region:</span> Western Europe
+            <span className='field-name'>Sub Region:</span>{' '}
+            {countryDetails.subRegion}
           </li>
           <li>
-            <span className='field-name'>Capital:</span> Brussels
+            <span className='field-name'>Capital:</span>{' '}
+            {countryDetails.capital}
           </li>
         </ul>
 
         <ul className='details-2'>
           <li>
-            <span className='field-name'>Top Level Domain:</span> .be
+            <span className='field-name'>Top Level Domain:</span>{' '}
+            {countryDetails.topLevelDomain}
           </li>
           <li>
-            <span className='field-name'>Currencies:</span> Euro
+            <span className='field-name'>Currencies:</span>{' '}
+            {countryDetails.currencies}
           </li>
           <li>
-            <span className='field-name'>Language:</span> Dutch, French, German
+            <span className='field-name'>Language:</span>{' '}
+            {countryDetails.languages}
           </li>
         </ul>
       </div>
-      <div className='border-countries'>
-        <h3 className='title'>Border Countries:</h3>
-        <div className='items'>
-          <a>France</a>
-          <a>Germany</a>
-          <a>Netherlands</a>
-          <a>France</a>
-          <a>Germany</a>
-          <a>Netherlands</a>
+      {countryDetails.borderCountries && (
+        <div className='border-countries'>
+          <h3 className='title'>Border Countries:</h3>
+          <div className='items'>
+            {countryDetails.borderCountries.map(
+              ({ name, code }: BorderCountry) => {
+                return (
+                  <Link key={code} to={`/country/${code}`}>
+                    {name}
+                  </Link>
+                );
+              }
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </CountryDetailsWrapper>
   );
 };
@@ -182,11 +220,13 @@ const CountryDetailsWrapper = styled.section`
       a {
         font-size: 14px;
         background: ${({ theme }) => theme.inputBg};
+        color: ${({ theme }) => theme.text};
         box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
         padding: 3px 20px;
         border-radius: 3px;
         cursor: pointer;
         user-select: none;
+        outline: none;
       }
     }
   }

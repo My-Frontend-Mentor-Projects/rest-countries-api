@@ -1,7 +1,9 @@
+import { useParams } from 'react-router-dom';
 import { CountryDetails } from '../Components';
 
 const Country = () => {
-  return <CountryDetails />;
+  let { countryCode } = useParams();
+  return <CountryDetails countryCode={countryCode} />;
 };
 
 export default Country;

@@ -4,7 +4,7 @@ import SelectBox from './SelectBox';
 import { device } from '../assets/breakpoints';
 import { Region } from '../types';
 
-export const regions: Array<Region> = [
+const regions: Array<Region> = [
   'Africa',
   'Americas',
   'Asia',

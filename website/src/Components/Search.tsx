@@ -6,6 +6,7 @@ import { useSearchCountry } from '../hooks/useSearchCountry';
 interface Props {
   placeholder: string;
 }
+
 const Search = ({ placeholder }: Props) => {
   const { isLoading, search, handleSearchValue } = useSearchCountry();
 

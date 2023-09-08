@@ -9,6 +9,12 @@ export type Country = {
   population: string;
   region: Region;
   capital: string;
+  code: string;
+};
+
+export type BorderCountry = {
+  name: string;
+  code: string;
 };
 
 export type CountryDetails = {
@@ -16,15 +22,17 @@ export type CountryDetails = {
     img: string;
     alt: string;
   };
+  name: string;
   nativeName: string;
   population: string;
   region: Region;
   subRegion: string;
   capital: string;
   topLevelDomain: string;
-  currencies: string[];
-  languages: string[];
-  borderCountries: string[];
+  currencies: string;
+  languages: string;
+  borderCountries: string | BorderCountry[];
+  code: string;
 };
 
 export interface CountryAPIResponse {
@@ -62,6 +70,7 @@ export interface CountryAPIResponse {
   startOfWeek: string;
   capitalInfo: CapitalInfo;
   postalCode: PostalCode;
+  borders: string[];
 }
 
 export interface CapitalInfo {
@@ -79,17 +88,12 @@ export interface CoatOfArms {
 }
 
 export interface Currencies {
-  ISK: Isk;
+  currency: Currency;
 }
 
-export interface Isk {
+export interface Currency {
   name: string;
   symbol: string;
-}
-
-export interface Demonyms {
-  eng: Eng;
-  fra: Eng;
 }
 
 export interface Eng {
@@ -113,7 +117,7 @@ export interface Idd {
 }
 
 export interface Languages {
-  isl: string;
+  language: string;
 }
 
 export interface Maps {
@@ -128,7 +132,7 @@ export interface Name {
 }
 
 export interface NativeName {
-  isl: Translation;
+  translation: Translation;
 }
 
 export interface Translation {
@@ -139,4 +143,9 @@ export interface Translation {
 export interface PostalCode {
   format: string;
   regex: string;
+}
+
+export interface Demonyms {
+  eng: Eng;
+  fra: Eng;
 }

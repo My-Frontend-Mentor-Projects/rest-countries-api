@@ -14,7 +14,7 @@ function App() {
       <Header themeToggler={themeToggler} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/country/:name' element={<Country />} />
+        <Route path='/country/:countryCode' element={<Country />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </ThemeProvider>
