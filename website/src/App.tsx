@@ -13,12 +13,11 @@ function App() {
       <GlobalStyles />
       <Header themeToggler={themeToggler} />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/rest-countries-api' element={<Home />} />
         <Route
           path='/rest-countries-api/country/:countryCode'
           element={<Country />}
         />
-        <Route path='*' element={<Home />} />
       </Routes>
     </ThemeProvider>
   );

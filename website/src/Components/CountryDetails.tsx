@@ -18,7 +18,9 @@ const CountryDetails = ({ countryCode }: Props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getCountryDetails({ countryCode }));
+    if (countryCode) {
+      dispatch(getCountryDetails({ countryCode }));
+    }
   }, [countryCode]);
 
   if (isLoading) {
