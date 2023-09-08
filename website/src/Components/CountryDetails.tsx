@@ -23,7 +23,7 @@ const CountryDetails = ({ countryCode }: Props) => {
     }
   }, [countryCode]);
 
-  if (isLoading) {
+  if (isLoading || !countryDetails) {
     return <Loader />;
   }
 
