@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {
   getCountriesByRegionThunk,
   getDefaultCountriesThunk,
+  searchCountriesThunk,
 } from './CountryThunk';
 
 const initialState: any = {
   isLoading: true,
   error: '',
   search: '',
-  region: '',
   countries: [],
   countryDetails: {},
 };
@@ -23,14 +23,25 @@ export const getCountriesByRegion = createAsyncThunk(
   getCountriesByRegionThunk
 );
 
+export const searchCountries = createAsyncThunk(
+  'country/searchCountry',
+  searchCountriesThunk
+);
+
 const countrySlice = createSlice({
   name: 'country',
   initialState,
-  reducers: {},
+  reducers: {
+    handleSearch: (state, { payload }) => {
+      state.search = payload.search;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getDefaultCountries.pending, (state) => {
         state.isLoading = true;
+        state.search = '';
+        state.error = '';
       })
       .addCase(getDefaultCountries.fulfilled, (state, { payload }) => {
         state.countries = payload;
@@ -42,6 +53,8 @@ const countrySlice = createSlice({
       })
       .addCase(getCountriesByRegion.pending, (state) => {
         state.isLoading = true;
+        state.search = '';
+        state.error = '';
       })
       .addCase(getCountriesByRegion.fulfilled, (state, { payload }) => {
         state.countries = payload;
@@ -49,11 +62,25 @@ const countrySlice = createSlice({
       })
       .addCase(getCountriesByRegion.rejected, (state, { payload }) => {
         state.error = payload;
+        state.countries = [];
+        state.isLoading = false;
+      })
+      .addCase(searchCountries.pending, (state) => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(searchCountries.fulfilled, (state, { payload }) => {
+        state.countries = payload;
+        state.isLoading = false;
+      })
+      .addCase(searchCountries.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.countries = [];
         state.isLoading = false;
       });
   },
 });
 
-export const {} = countrySlice.actions;
+export const { handleSearch } = countrySlice.actions;
 
 export default countrySlice.reducer;

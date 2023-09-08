@@ -2,7 +2,15 @@ import { styled } from 'styled-components';
 import Search from './Search';
 import SelectBox from './SelectBox';
 import { device } from '../assets/breakpoints';
-import { regions } from '../utils/constants';
+import { Region } from '../types';
+
+export const regions: Array<Region> = [
+  'Africa',
+  'Americas',
+  'Asia',
+  'Europe',
+  'Oceania',
+];
 
 const Filters = () => {
   return (

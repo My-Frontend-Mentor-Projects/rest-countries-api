@@ -1,16 +1,24 @@
 import { styled } from 'styled-components';
 import { device } from '../assets/breakpoints';
 import { RxMagnifyingGlass } from 'react-icons/rx';
+import { useSearchCountry } from '../hooks/useSearchCountry';
 
 interface Props {
   placeholder: string;
 }
-
 const Search = ({ placeholder }: Props) => {
+  const { isLoading, search, handleSearchValue } = useSearchCountry();
+
   return (
     <SearchWrapper>
       <RxMagnifyingGlass className='search-icon' />
-      <input type='text' placeholder={placeholder} />
+      <input
+        type='text'
+        placeholder={placeholder}
+        disabled={isLoading}
+        value={search}
+        onChange={handleSearchValue}
+      />
     </SearchWrapper>
   );
 };
