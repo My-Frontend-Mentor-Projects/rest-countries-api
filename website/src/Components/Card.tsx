@@ -51,7 +51,7 @@ const CardWrapper = styled.div`
   }
 
   .name {
-    margin: 25px 0 20px 20px;
+    margin: 25px 20px 10px 20px;
     font-size: 18px;
     font-weight: 800;
   }

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { device } from './breakpoints';
 
-export const GlobalStyles: any = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
 
 #root {
   max-width: 1920px;
