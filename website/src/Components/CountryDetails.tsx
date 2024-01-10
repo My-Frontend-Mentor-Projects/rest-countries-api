@@ -87,7 +87,7 @@ const CountryDetails = ({ countryCode }: Props) => {
             {countryDetails.borderCountries.map(
               ({ name, code }: BorderCountry) => {
                 return (
-                  <Link key={code} to={`/rest-countries/country/${code}`}>
+                  <Link key={code} to={`/rest-countries-spa/country/${code}`}>
                     {name}
                   </Link>
                 );

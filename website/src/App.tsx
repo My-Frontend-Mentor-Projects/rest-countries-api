@@ -13,9 +13,9 @@ function App() {
       <GlobalStyles />
       <Header themeToggler={themeToggler} />
       <Routes>
-        <Route path='/rest-countries' element={<Home />} />
+        <Route path='/rest-countries-spa' element={<Home />} />
         <Route
-          path='/rest-countries/country/:countryCode'
+          path='/rest-countries-spa/country/:countryCode'
           element={<Country />}
         />
       </Routes>
