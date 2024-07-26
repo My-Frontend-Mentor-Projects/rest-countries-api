@@ -11,7 +11,7 @@ const Card = ({ country }: Props) => {
   const { flag, name, population, region, capital, code } = country;
   return (
     <CardWrapper>
-      <Link to={`/rest-countries-spa/country/${code}`} className='container'>
+      <Link to={`/country/${code}`} className='container'>
         <img src={flag.img} alt={flag.alt} />
         <h3 className='name'>{name}</h3>
         <ul className='desc'>

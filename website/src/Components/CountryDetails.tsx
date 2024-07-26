@@ -12,9 +12,7 @@ interface Props {
 }
 
 const CountryDetails = ({ countryCode }: Props) => {
-  const { isLoading, error, countryDetails } = useAppSelector(
-    (store) => store.country
-  );
+  const { isLoading, error, countryDetails } = useAppSelector((store) => store.country);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -36,47 +34,36 @@ const CountryDetails = ({ countryCode }: Props) => {
       <div className='btn-container'>
         <BackButton />
       </div>
-      <img
-        className='flag'
-        src={countryDetails.flag.img}
-        alt={countryDetails.flag.alt}
-      />
+      <img className='flag' src={countryDetails.flag.img} alt={countryDetails.flag.alt} />
       <div className='details'>
         <h2 className='title'>{countryDetails.name}</h2>
         <ul className='details-1'>
           <li>
-            <span className='field-name'>Native Name:</span>{' '}
-            {countryDetails.nativeName}
+            <span className='field-name'>Native Name:</span> {countryDetails.nativeName}
           </li>
           <li>
-            <span className='field-name'>Population:</span>{' '}
-            {countryDetails.population}
+            <span className='field-name'>Population:</span> {countryDetails.population}
           </li>
           <li>
             <span className='field-name'>Region:</span> {countryDetails.region}
           </li>
           <li>
-            <span className='field-name'>Sub Region:</span>{' '}
-            {countryDetails.subRegion}
+            <span className='field-name'>Sub Region:</span> {countryDetails.subRegion}
           </li>
           <li>
-            <span className='field-name'>Capital:</span>{' '}
-            {countryDetails.capital}
+            <span className='field-name'>Capital:</span> {countryDetails.capital}
           </li>
         </ul>
 
         <ul className='details-2'>
           <li>
-            <span className='field-name'>Top Level Domain:</span>{' '}
-            {countryDetails.topLevelDomain}
+            <span className='field-name'>Top Level Domain:</span> {countryDetails.topLevelDomain}
           </li>
           <li>
-            <span className='field-name'>Currencies:</span>{' '}
-            {countryDetails.currencies}
+            <span className='field-name'>Currencies:</span> {countryDetails.currencies}
           </li>
           <li>
-            <span className='field-name'>Language:</span>{' '}
-            {countryDetails.languages}
+            <span className='field-name'>Language:</span> {countryDetails.languages}
           </li>
         </ul>
       </div>
@@ -84,15 +71,13 @@ const CountryDetails = ({ countryCode }: Props) => {
         <div className='border-countries'>
           <h3 className='title'>Border Countries:</h3>
           <div className='items'>
-            {countryDetails.borderCountries.map(
-              ({ name, code }: BorderCountry) => {
-                return (
-                  <Link key={code} to={`/rest-countries-spa/country/${code}`}>
-                    {name}
-                  </Link>
-                );
-              }
-            )}
+            {countryDetails.borderCountries.map(({ name, code }: BorderCountry) => {
+              return (
+                <Link key={code} to={`/country/${code}`}>
+                  {name}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}
